@@ -27,5 +27,6 @@ public class Main {
         order.addSeatReservation(normalTicket4);
 
         order.calculatePrice();
+        order.export(TicketExportFormat.PLAINTEXT);
     }
 }

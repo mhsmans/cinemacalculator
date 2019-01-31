@@ -1,8 +1,7 @@
 package domain;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class Order {
     private int orderNr;
@@ -44,7 +43,7 @@ public class Order {
                 }
             }
         }
-        // Normaal order
+        // Normal order
         else {
             for (int i = 0; i < tickets.size(); i++) {
                 // Check if index is even and not equals 0
@@ -61,7 +60,7 @@ public class Order {
                     }
                 }
             }
-            // Meer dan zes kaartjes? Tien procent korting op totaal.
+            // 6 tickets or more? 10% discount.
             if (tickets.size() >= 6) {
                 totalPrice = totalPrice * 0.9;
             }
@@ -71,7 +70,24 @@ public class Order {
     }
 
     public void export(TicketExportFormat exportFormat) {
-        // Bases on the string respresentations of the tickets (toString), write
+
+        if (exportFormat.equals(TicketExportFormat.PLAINTEXT)) {
+            String fileName = "tickets.txt";
+
+            try {
+                PrintWriter outputStream = new PrintWriter(fileName);
+                for (MovieTicket t : tickets) {
+                    outputStream.println(t.toString());
+                }
+                outputStream.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        // Bases on the string representations of the tickets (toString), write
         // the ticket to a file with naming convention Order_<orderNr>.txt of
         // Order_<orderNr>.json
     }
