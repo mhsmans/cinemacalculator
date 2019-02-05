@@ -24,8 +24,8 @@ public class Order {
         tickets.add(ticket);
     }
 
+    // Cyclomatic complexity (20?)
     public double calculatePrice() {
-
 
         double totalPrice = 0;
 
@@ -65,6 +65,65 @@ public class Order {
                 totalPrice = totalPrice * 0.9;
             }
         }
+        System.out.println("Total price equals: " + totalPrice);
+        return totalPrice;
+    }
+
+    // Updated function for cyclomatic complexity (16?)
+    public double calculatePriceTwo() {
+        double totalPrice = 0;
+        boolean weekend = false;
+
+        // Check if tickets are weekend tickets
+        if (tickets.get(0).getDate().getDayOfWeek().toString() == "FRIDAY" ||
+                tickets.get(0).getDate().getDayOfWeek().toString() == "SATURDAY" ||
+                tickets.get(0).getDate().getDayOfWeek().toString() == "SUNDAY") {
+            weekend = true;
+        }
+
+        // Student order
+        if (isStudentOrder) {
+            for (int i = 0; i < tickets.size(); i++) {
+                // Check if index is even, if not add price
+                if (i % 2 != 0 || i == 0) {
+                    // Check if premium ticket
+                    if (tickets.get(i).isPremiumTicket()) {
+                        totalPrice = totalPrice + tickets.get(i).getPrice() + 2;
+                    } else {
+                        totalPrice += tickets.get(i).getPrice();
+                    }
+                }
+            }
+        }
+        // Normal order weekend
+        else if (!weekend) {
+            for (int i = 0; i < tickets.size(); i++) {
+                if (i % 2 != 0 || i == 0) {
+                    // Check if premium ticket
+                    if (tickets.get(i).isPremiumTicket()) {
+                        totalPrice = totalPrice + tickets.get(i).getPrice() + 3;
+                    } else {
+                        totalPrice += tickets.get(i).getPrice();
+                    }
+                }
+            }
+            // 6 tickets or more? 10% discount.
+            if (tickets.size() >= 6) {
+                totalPrice = totalPrice * 0.9;
+            }
+        }
+        // Normal order weekday
+        else {
+            for (int i = 0; i < tickets.size(); i++) {
+                // Check if premium ticket
+                if (tickets.get(i).isPremiumTicket()) {
+                    totalPrice = totalPrice + tickets.get(i).getPrice() + 3;
+                } else {
+                    totalPrice += tickets.get(i).getPrice();
+                }
+            }
+        }
+
         System.out.println("Total price equals: " + totalPrice);
         return totalPrice;
     }
