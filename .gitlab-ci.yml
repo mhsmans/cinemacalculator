@@ -2,9 +2,7 @@ sonarqube_master_job:
   image: maven
   stage: test
   script:
-    - mvn --batch-mode verify sonar:sonar \
-      -Dsonar.host.url=http://sonarqube.avans-informatica-breda.nl \
-      -Dsonar.login=7a1ff43351850d0736ddc7dbd8b746c1d38c6e28
+    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=http://sonarqube.avans-informatica-breda.nl -Dsonar.login=7a1ff43351850d0736ddc7dbd8b746c1d38c6e28
   only:
     - master
 
