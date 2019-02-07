@@ -1,0 +1,14 @@
+domain/NormalOrder.class
+domain/Order.class
+domain/CalculatePriceWeekend.class
+domain/WeekendOrder.class
+domain/Movie.class
+domain/MyOrder.class
+domain/StudentOrder.class
+domain/MovieScreening.class
+domain/TicketExportFormat.class
+domain/CalculatePriceNormal.class
+domain/MovieTicket.class
+domain/CalculatePriceBehavior.class
+domain/CalculatePriceStudent.class
+domain/Main.class

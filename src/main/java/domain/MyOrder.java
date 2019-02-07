@@ -30,8 +30,8 @@ public abstract class MyOrder {
         this.exportBehavior = exportBehavior;
     }*/
 
-    public void calculatePrice() {
-        calculatePriceBehavior.calculatePrice(tickets);
+    public double calculatePrice() {
+        return calculatePriceBehavior.calculatePrice(tickets);
     }
 
     /*public void export() {
