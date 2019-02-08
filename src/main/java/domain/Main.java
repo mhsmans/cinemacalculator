@@ -20,6 +20,7 @@ public class Main {
 
         System.out.println("Create student order");
         MyOrder order = new StudentOrder(1);
+        order.setCalculatePriceBehavior((new CalculatePriceStudent()));
         order.addSeatReservation(normalTicket);
         order.addSeatReservation(premiumTicket);
         order.addSeatReservation(normalTicket2);
@@ -28,6 +29,7 @@ public class Main {
 
         System.out.println("Create normal order");
         MyOrder secondOrder = new NormalOrder(2);
+        secondOrder.setCalculatePriceBehavior(new CalculatePriceNormal());
         secondOrder.addSeatReservation(normalTicket);
         secondOrder.addSeatReservation(premiumTicket);
         secondOrder.addSeatReservation(normalTicket2);
@@ -36,6 +38,7 @@ public class Main {
 
         System.out.println("Create weekend order");
         MyOrder thirdOrder = new WeekendOrder(3);
+        thirdOrder.setCalculatePriceBehavior(new CalculatePriceWeekend());
         thirdOrder.addSeatReservation(normalTicket);
         thirdOrder.addSeatReservation(premiumTicket);
         thirdOrder.addSeatReservation(normalTicket2);
@@ -45,6 +48,5 @@ public class Main {
         order.calculatePrice();
         secondOrder.calculatePrice();
         thirdOrder.calculatePrice();
-        /*order.export(TicketExportFormat.PLAINTEXT);*/
     }
 }
